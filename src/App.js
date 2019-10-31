@@ -50,7 +50,7 @@ class App extends Component {
   }
 
   getMovies = () => {
-      fetch(`https://api.themoviedb.org/3/movie/popular?page=1&language=en-US&api_key=${apiKey}`)
+      fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`)
       .then(res => res.json())
       .then(data => {
         let movies = data.results;
