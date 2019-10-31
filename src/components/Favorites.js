@@ -8,9 +8,22 @@ class Favorites extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      movies: this.props.movies,
+      movies: JSON.parse(localStorage.getItem('favorites')),
       showMovieCard: false,
     }
+  }
+
+  removeFromStorage = (movie) => {
+    this.setState({
+     movies: this.state.movies.filter(item => movie !== item)
+   }, () => {
+     localStorage.setItem(
+       'favorites',
+         JSON.stringify(
+           JSON.parse(localStorage.getItem('favorites')).filter(item => item.id !== movie.id)
+         )
+     )
+   })
   }
 
   render() {
@@ -23,19 +36,11 @@ class Favorites extends React.Component {
             this.state.movies.map((movie, i) => {
               return (
                  <div key={movie.id} className="textWithBlurredBg">
-
-                  <span onClick={() => {
-                    movie['isFavorite'] = !movie['isFavorite'];
-                    this.setState({
-                     movies: this.state.movies.filter(movie => movie['isFavorite'] === true)
-                     })
-
-                    console.log(this.state.movies);
-                  }} className='heart'>
+                  <span onClick={() => this.removeFromStorage(movie)}
+                className='heart'>
                     <input id="fav" type="checkbox" defaultChecked />
                     <label htmlFor="fav"></label>
                   </span>
-
                   <img onClick={() =>
                     this.setState({
                      movieIndex: i,
@@ -50,7 +55,7 @@ class Favorites extends React.Component {
           }
 
           {this.state.showMovieCard &&
-            <MovieCard movie={this.props.movies[this.state.movieIndex]} genres={this.props.genres} close={() => this.setState({showMovieCard: !this.state.showMovieCard})}
+            <MovieCard movie={this.state.movies[this.state.movieIndex]} genres={this.props.genres} close={() => this.setState({showMovieCard: !this.state.showMovieCard})}
            />}
         </Box>
     )

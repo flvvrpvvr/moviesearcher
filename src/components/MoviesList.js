@@ -14,6 +14,40 @@ class MoviesList extends React.Component {
     }
   }
 
+  store = (movie) => {
+      let favorites = JSON.parse(localStorage.getItem('favorites'))
+
+      if (favorites == null || favorites.length === 0) {
+        console.log('1.favorites is empty - add movie');
+        let movies = [];
+        movies.push(movie)
+        localStorage.setItem(
+          'favorites',
+            JSON.stringify(
+              movies
+            )
+        )
+      } else {
+        if (favorites.some(item => item.id === movie.id)) {
+        console.log('already exists - deleted');
+        localStorage.setItem(
+          'favorites',
+            JSON.stringify(
+              favorites.filter(item => item.id !== movie.id)
+            )
+        )
+      } else {
+          favorites.push(movie)
+          localStorage.setItem(
+            'favorites',
+              JSON.stringify(
+                favorites
+              )
+          )
+      }
+    }
+  }
+
   render() {
     return this.props.movies !== undefined
      ?
@@ -24,11 +58,8 @@ class MoviesList extends React.Component {
           this.props.movies.map((movie, i) => {
             return (
                <div key={movie.id} className="textWithBlurredBg">
-                <span onClick={() => {
-                  movie['isFavorite'] = !movie['isFavorite'];
-                  this.props.sendFavorites(movie)
-                }} className='heart'>
-                  <input id="fav" type="checkbox" />
+                <span className='heart'>
+                  <input onChange={() => this.store(movie)} id="fav" type="checkbox" />
                   <label htmlFor="fav"></label>
                 </span>
                 <img onClick={() =>

@@ -28,7 +28,6 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      favMovies: [],
       favoritesIsOpen: false,
       movies: undefined,
     }
@@ -39,15 +38,6 @@ class App extends Component {
       movies: val,
       favoritesIsOpen: false,
     })
-  }
-
-  getFavorites = (val) => {
-    this.setState(state => {
-     const favMovies = state.favMovies.concat(val);
-     return {
-       favMovies,
-     };
-   })
   }
 
   getGenres = () => {
@@ -100,8 +90,7 @@ class App extends Component {
 
                 {
                   this.state.favoritesIsOpen ?
-                  (<Favorites
-                     genres={this.state.genres} movies={Array.from(new Set(this.state.favMovies)).filter(movie => movie['isFavorite'] === true)} />)
+                  (<Favorites genres={this.state.genres} />)
                   :
                   (<MoviesList
                    sendFavorites={this.getFavorites} movies={this.state.movies} genres={this.state.genres}
