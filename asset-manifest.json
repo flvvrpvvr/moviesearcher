@@ -1,21 +1,22 @@
 {
   "files": {
-    "main.css": "/moviesearcher/static/css/main.a380ea66.chunk.css",
-    "main.js": "/moviesearcher/static/js/main.eb318c76.chunk.js",
-    "main.js.map": "/moviesearcher/static/js/main.eb318c76.chunk.js.map",
+    "main.css": "/moviesearcher/static/css/main.b10f1df3.chunk.css",
+    "main.js": "/moviesearcher/static/js/main.3b2139da.chunk.js",
+    "main.js.map": "/moviesearcher/static/js/main.3b2139da.chunk.js.map",
     "runtime-main.js": "/moviesearcher/static/js/runtime-main.462c3d51.js",
     "runtime-main.js.map": "/moviesearcher/static/js/runtime-main.462c3d51.js.map",
-    "static/js/2.6e54d2ad.chunk.js": "/moviesearcher/static/js/2.6e54d2ad.chunk.js",
-    "static/js/2.6e54d2ad.chunk.js.map": "/moviesearcher/static/js/2.6e54d2ad.chunk.js.map",
+    "static/js/2.80676490.chunk.js": "/moviesearcher/static/js/2.80676490.chunk.js",
+    "static/js/2.80676490.chunk.js.map": "/moviesearcher/static/js/2.80676490.chunk.js.map",
     "index.html": "/moviesearcher/index.html",
-    "precache-manifest.52b2d4972c8bfdbbdea721d1aa07dc7e.js": "/moviesearcher/precache-manifest.52b2d4972c8bfdbbdea721d1aa07dc7e.js",
+    "precache-manifest.c266cf60ed349d3bdce31b45fc86d1fc.js": "/moviesearcher/precache-manifest.c266cf60ed349d3bdce31b45fc86d1fc.js",
     "service-worker.js": "/moviesearcher/service-worker.js",
-    "static/css/main.a380ea66.chunk.css.map": "/moviesearcher/static/css/main.a380ea66.chunk.css.map"
+    "static/css/main.b10f1df3.chunk.css.map": "/moviesearcher/static/css/main.b10f1df3.chunk.css.map",
+    "static/media/spinner.svg": "/moviesearcher/static/media/spinner.b134487f.svg"
   },
   "entrypoints": [
     "static/js/runtime-main.462c3d51.js",
-    "static/js/2.6e54d2ad.chunk.js",
-    "static/css/main.a380ea66.chunk.css",
-    "static/js/main.eb318c76.chunk.js"
+    "static/js/2.80676490.chunk.js",
+    "static/css/main.b10f1df3.chunk.css",
+    "static/js/main.3b2139da.chunk.js"
   ]
 }
