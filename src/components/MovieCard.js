@@ -2,7 +2,7 @@ import React from 'react';
 import './MovieCard.css'
 
 
-const MovieCard = ({ movie, genres, close }) => {
+const MovieCard = ({ movie, close }) => {
   return (
     <div>
       <div className="overlay" onClick={close} />
@@ -17,7 +17,7 @@ const MovieCard = ({ movie, genres, close }) => {
                   <li>{movie.vote_average}</li>
                 </ul>
                 <ul id='genres'>
-                  {movie.genre_ids.map(id => <li key={id}>{genres.filter(genre => genre.id === id)[0].name}</li>)}
+                  {movie.genres.map(genre => <li key={genre}>{genre}</li>)}
                 </ul>
               </div>
               <div className="card_right__rating">

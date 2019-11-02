@@ -22,6 +22,7 @@ const theme = {
   },
 };
 
+let genres = [];
 const apiKey = '3bfc2790af0abb18fd91abed5ebdd0d2';
 
 class App extends Component {
@@ -29,48 +30,45 @@ class App extends Component {
     super(props);
     this.state = {
       favoritesIsOpen: false,
-      movies: undefined,
+      movies: [],
     }
   }
 
+  getGenres = (movies) => {
+    movies.forEach(movie => movie.genres = movie.genre_ids.map(id => genres.filter(genre => genre.id === id)[0].name))
+  }
+
   getQuery = (val) => {
+    this.getGenres(val)
     this.setState({
       movies: val,
       favoritesIsOpen: false,
     })
   }
 
-  getGenres = () => {
-      fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
-      .then(res => res.json())
-      .then(data => this.setState({
-          genres: data.genres,
-      })
-    )
-  }
-
   getMovies = () => {
-      fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`)
-      .then(res => res.json())
-      .then(data => {
-        let movies = data.results;
-        movies.map(movie => movie['isFavorite'] = false)
-        this.setState({
-          movies: movies,
+    fetch(`https://api.themoviedb.org/3/genre/movie/list?api_key=${apiKey}&language=en-US`)
+    .then(res => res.json())
+    .then(data => genres = data.genres)
+    .then(() => fetch(`https://api.themoviedb.org/3/movie/top_rated?api_key=${apiKey}&language=en-US&page=1`))
+    .then(res => res.json())
+    .then(data => {
+      this.getGenres(data.results)
+      this.setState({
+        movies: data.results,
         })
-      })
+      }
+    )
   }
 
   componentDidMount() {
     this.getMovies()
-    this.getGenres()
   }
 
   render() {
     return (
       <Grommet theme={theme} full>
             <Box fill>
-
                 <Header
                   toggleFavorites={() => this.setState({
                     favoritesIsOpen: !this.state.favoritesIsOpen
@@ -85,16 +83,12 @@ class App extends Component {
                     this.getMovies();
                   }}
                   sendData={this.getQuery} />
-
               <Box direction='row' flex overflow={{ horizontal: 'hidden' }}>
-
                 {
                   this.state.favoritesIsOpen ?
-                  (<Favorites genres={this.state.genres} />)
+                  (<Favorites />)
                   :
-                  (<MoviesList
-                   sendFavorites={this.getFavorites} movies={this.state.movies} genres={this.state.genres}
-                   />)
+                  (<MoviesList movies={this.state.movies} />)
                 }
               </Box>
             </Box>

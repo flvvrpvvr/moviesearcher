@@ -49,11 +49,8 @@ class MoviesList extends React.Component {
   }
 
   render() {
-    return this.props.movies !== undefined
-     ?
-      (
+    return (
         <Box className="movies-wrapper">
-
         {
           this.props.movies.map((movie, i) => {
             return (
@@ -76,13 +73,12 @@ class MoviesList extends React.Component {
         }
         {
           this.state.showMovieCard &&
-          <MovieCard  movie={this.props.movies[this.state.movieIndex]} genres={this.props.genres} close={() => this.setState({
+          <MovieCard  movie={this.props.movies[this.state.movieIndex]}  close={() => this.setState({
            showMovieCard: !this.state.showMovieCard
           })} />
         }
         </Box>
     )
-       : null
   }
 }
 

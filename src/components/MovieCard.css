@@ -1,8 +1,30 @@
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
 
+@keyframes fadeout {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+}
+
+@keyframes fadein {
+  0% {
+    opacity: 0;
+    transform: scale(1.1);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
 
 .overlay {
+  animation: fadein 500ms;
   background: rgba(0, 0, 0, 0.5);
   position: fixed;
   top: 0;

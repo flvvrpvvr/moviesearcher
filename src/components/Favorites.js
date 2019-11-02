@@ -55,7 +55,7 @@ class Favorites extends React.Component {
           }
 
           {this.state.showMovieCard &&
-            <MovieCard movie={this.state.movies[this.state.movieIndex]} genres={this.props.genres} close={() => this.setState({showMovieCard: !this.state.showMovieCard})}
+            <MovieCard movie={this.state.movies[this.state.movieIndex]} close={() => this.setState({showMovieCard: !this.state.showMovieCard})}
            />}
         </Box>
     )

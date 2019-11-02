@@ -16,12 +16,10 @@ class Header extends React.Component {
   }
 
 
-  search = async (query) => {
-      const apiUrl = await fetch(`https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&language=en-US&query=${query}&page=1&include_adult=false`)
-      const data = await apiUrl.json();
-      let movies = data.results;
-
-      this.props.sendData(movies.filter(movie => movie.poster_path !== null))
+  search = (query) => {
+      fetch(`https://api.themoviedb.org/3/search/movie?api_key=${this.props.apiKey}&language=en-US&query=${query}&page=1&include_adult=false`)
+      .then(res => res.json())
+      .then(data => this.props.sendData(data.results.filter(movie => movie.poster_path !== null)))
   }
 
   handleChange = (e) => {
