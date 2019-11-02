@@ -39,11 +39,16 @@ class App extends Component {
   }
 
   getQuery = (val) => {
+    this.setState({loading: true})
     this.getGenres(val)
-    this.setState({
-      movies: val,
-      favoritesIsOpen: false,
-    })
+    setTimeout(() => {
+      this.setState({
+        movies: val,
+        favoritesIsOpen: false,
+        loading: false,
+      })
+    }, 500
+    )
   }
 
   getMovies = () => {
@@ -88,7 +93,7 @@ class App extends Component {
                   this.state.favoritesIsOpen ?
                   (<Favorites />)
                   :
-                  (<MoviesList movies={this.state.movies} />)
+                  (<MoviesList loading={this.state.loading} movies={this.state.movies} />)
                 }
               </Box>
             </Box>
